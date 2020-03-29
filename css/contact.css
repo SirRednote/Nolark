@@ -95,7 +95,21 @@ input[type="email"]:valid ~ .input-validation::before {
 }
 
 @media screen and (max-width:576px) {
+    
     #motif {
         margin-top: 20px;
     }
+    
+}
+
+@media screen and (min-width:576px) and (max-width:768px) {
+    
+    #contact h1 {
+        text-align: center;
+    }
+    
+    #coordo {
+        margin-bottom : 20px;
+    }
+    
 }
