@@ -149,7 +149,7 @@ h1 {
     padding : 0 20px 0 20px;
 }
 
-a:hover {
+#thematique a:hover {
     border: black thin solid; /* Bordure au passage de la souris */
     border-radius: 10px; /* Bords arrondis au passage de la souris */
     background-color: #ededed; /* Fond au passage de la souris */
@@ -189,7 +189,7 @@ footer a{
 }
 
 /* Smartphone */
-@media screen and (max-width:576px) {
+@media screen and (max-width:768px) {
     
     body {
         font-size: large;
@@ -318,3 +318,10 @@ footer a{
     
 }
 
+@media screen and (min-width:576px) and (max-width:768px) {
+    
+    #thematique {
+        flex-direction: row; /* Sur tablette, les casques de l'accueil sont côte à côte */
+    }
+    
+}
