@@ -91,10 +91,10 @@
 #casques .classement {
     width: 85px; /* Largeur de l'image */
     height: 18px; /* Hauteur de l'image */
-    position: absolute; /* Position absolue */
+    position: relative; /* Position absolue */
     bottom: 0; /* Bas */
     object-fit: none; /* Pas de redimensionnement de l'image */
-    margin: 0 39px; /* Marges extérieures */
+    margin: 5px 39px; /* Marges extérieures */
 }
 
 #casques .classement.classement00 {

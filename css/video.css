@@ -31,16 +31,34 @@
 
 /* Smartphone */
 @media screen and (max-width:576px) {
+    
     #video {
         flex-direction: column;
     }
+    
     #video article {
         width: auto;
     }
-    #video article p {
-        padding-left: 10px;
-    }
+
     #video iframe {
         align-self: center;
     }
+}
+
+@media screen and (min-width:576px) and (max-width:768px) {
+    
+    #video {
+        flex-direction: column;
+    }
+    
+    #video iframe {
+        align-self: center;
+        width : 80%;
+    }
+    
+    #video article {
+        width: 100%;
+        padding-right: 10px;
+    }
+    
 }
