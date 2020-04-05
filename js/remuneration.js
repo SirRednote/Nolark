@@ -48,7 +48,7 @@ function calcRemu() {
 * @return {integer}
 */
 
-function recupValeur(id) {
+export function recupValeur(id) {
     var valeur = parseInt(window.document.querySelector(id).value);
     if (isNaN(valeur)) {
         window.document.querySelector(id).value = 0;

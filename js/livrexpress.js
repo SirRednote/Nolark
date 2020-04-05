@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+import {recupValeur} from './remuneration.js';
+
 window.addEventListener('load', function () {
     // tabEvents est une collection d'évenements
     let tabEvents = ['keyup', 'click'];
