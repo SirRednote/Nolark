@@ -6,11 +6,18 @@
 
 import {recupValeur} from './remuneration.js';
 
+/**
+ * Listeners sur les inputs
+ * 
+ */
+
 window.addEventListener('load', function () {
     // tabEvents est une collection d'évenements
     let tabEvents = ['keyup', 'click'];
+    
     // tabInputs est une collection de <input>
     let tabInputs = window.document.querySelectorAll('input[type="number"]');
+    
     // Parcours de tabInputs en s'appuyant sur le nombre de <input> et sur tabEvents
     for (let i = 0; i < tabInputs.length; i++) {
         for (let j = 0; j < tabEvents.length; j++) {
@@ -18,36 +25,24 @@ window.addEventListener('load', function () {
             tabInputs[i].addEventListener(tabEvents[j], calculerPrime);
         }
     }
+    
     // Gestion de l'input de type range (recopie de la valeur dans l'output)
     window.document.querySelector('#nb_accidents').addEventListener('change',
     function() {
         window.document.querySelector('#o_nb_accidents'). value = recupValeur('#nb_accidents');
         calculerPrime();
     });
+    
+    window.document.querySelector('#btn_annuler').addEventListener('click', function() {
+        window.document.querySelector('#remuneration').innerHTML = "";
+    });
 });
-
-/**
-* Fonction qui retourne la prime annuelle
-*
-* @param {float} primeDist
-* @param {float} primeAncien
-* @param {integer} nbAccidents
-* @returns {float}
-*/
-function recupPrimeAnnuelle(primeDist, primeAncien, nbAccidents) {
-    if (nbAccidents > 3) {
-        return 0;
-    }
-    else {
-        return Number(((primeDist + primeAncien) / (1 + nbAccidents)).toFixed(2));
-    }
-}
 
 /**
 * Fonction principale qui s'occupe de récupérer les valeurs, calculer le montant
 * de la rémunération et qui s'occupe ensuite de l'afficher
 *
-* @returns {undefined}
+* @returns {void}
 */
 
 function calculerPrime() {
@@ -56,33 +51,11 @@ function calculerPrime() {
     let nbKm = recupValeur('#nb_km');
     let primeAnnuelleSansAccident = recupPrimeAnnuelle(recupPrimeDist(nbKm),
     recupPrimeAncien(nbAncien),0);
-    let primeAnnuelle = recupPrimeAnnuelle( recupPrimeDist(nbKm),
+    let primeAnnuelle = recupPrimeAnnuelle(recupPrimeDist(nbKm),
     recupPrimeAncien(nbAncien),nbAccidents);
+    
     // Gestion de l'affichage de la prime en fonction du nombre d'accidents
     gestionNbAccidents(nbAccidents, primeAnnuelleSansAccident, primeAnnuelle);
-}
-
-/**
-* Fonction qui retourne un entier depuis une valeur prise dans le DOM
-*
-* @param {String} id
-* @return {integer}
-*/
-
-function recupValeur(id) {
-    return parseInt(window.document.querySelector(id).value);
-}
-
-/**
-* Fonction qui affiche la rémunération dans l'élément d'id "remuneration"
-*
-* @param {type} prime
-* @return {undefined}
-*/
-
-function affichePrime(prime) {
-    window.document.querySelector("#prime").innerHTML =
-    "La prime de fin d'année sera de : " + prime + "€";
 }
 
 /**
@@ -118,6 +91,22 @@ function recupPrimeAncien(nb) {
         return 0.0;
     }
 }
+/**
+* Fonction qui retourne la prime annuelle
+*
+* @param {float} primeDist
+* @param {float} primeAncien
+* @param {integer} nbAccidents
+* @returns {float}
+*/
+function recupPrimeAnnuelle(primeDist, primeAncien, nbAccidents) {
+    if (nbAccidents > 3) {
+        return 0;
+    }
+    else {
+        return Number(((primeDist + primeAncien) / (1 + nbAccidents)).toFixed(2));
+    }
+}
 
 /**
 * Procédure qui gère l'affichage en fonction du nombre d'accidents
@@ -151,25 +140,5 @@ function gestionNbAccidents(nbAccidents, primeAnnuelleSansAccident, primeAnnuell
         + ' € alors qu\'elle aurait pu être de '
         + primeAnnuelleSansAccident + ' € sans ' + nbAccidents
         + ' accidents responsables...';
-    }
-}
-
-/**
-* Fonction qui retourne un entier depuis une valeur prise dans le DOM et qui replace
-le
-* champ à 0 si la valeur saisie n'est pas un nombre
-*
-* @param {String} id
-* @return {integer}
-*/
-
-function recupValeur(id) {
-    var valeur = parseInt(window.document.querySelector(id).value);
-    if (isNaN(valeur)) {
-        window.document.querySelector(id).value = 0;
-        return 0;
-    }
-    else {
-        return valeur;
     }
 }
