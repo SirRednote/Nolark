@@ -5,6 +5,84 @@
  */
 
 /**
+ * Listeners sur les inputs
+ */
+
+window.addEventListener('load', function () {
+    // tabEvents est une collection d'évenements
+    let tabEvents = ['keyup', 'click'];
+    
+    // tabInputs est une collection de <input>
+    let tabInputs = window.document.querySelectorAll('input:not([id="btn_annuler"])');
+    
+    // Parcours de tabInputs en s'appuyant sur le nombre de <input> et sur tabEvents
+    for (let i = 0; i < tabInputs.length; i++) {
+        for (let j = 0; j < tabEvents.length; j++) {
+            // Ajout des listeners sur tous les <input> des events listés dans tabEvents
+            tabInputs[i].addEventListener(tabEvents[j], gestionAlcoolemie);
+        }
+    }
+    
+    // Suppression du bug du bouton reset
+    window.document.querySelector('#btn_annuler').addEventListener('click', function () {
+        window.document.querySelector('#btn_annuler').form.reset();
+        gestionAlcoolemie();
+    });
+});
+
+function gestionAlcoolemie() {
+    let poids = getInt('#nb_poids');
+    let sexe = getString('#sexe input[type="radio"]:checked');
+    let nbVerres = getInt('#nb_verres');
+    let alcoolemie = getAlcoolemie(sexe, poids, nbVerres);
+    
+    if(alcoolemie >= 0.5) {
+        affiche('h3', '#sect_alcoolemie', 'alcoolemie', 'Alcoolémie : ' + alcoolemie + 'g/l de sang', 'red');
+        affiche('h3', '#sect_alcoolemie', 'amende', 'Amende : ' + getAmende(alcoolemie), 'black');
+        affiche('h3', '#sect_alcoolemie', 'sanction', 'Sanction : ' + getSanction(alcoolemie), 'black');
+    }
+    else {
+        affiche('h3', '#sect_alcoolemie', 'alcoolemie', 'Alcoolemie : ' + alcoolemie + 'g/l de sang');
+        supprime('amende');
+        supprime('sanction');
+    }
+}
+
+/**
+ * Fonction qui affiche le message en fonction du taux d'alcoolémie
+ * @param {type} typeEl
+ * @param {type} cible
+ * @param {type} id
+ * @param {type} contenu
+ * @param {type} couleur
+ * @returns {undefined}
+ */
+
+function affiche(typeEl, cible, id, contenu, couleur) {
+    let elH3 = window.document.querySelector('#' + id);
+    if (!elH3) {
+        elH3 = window.document.createElement(typeEl);
+        elH3.id = id;
+        window.document.querySelector(cible).appendChild(elH3);
+    }
+    elH3.style.setProperty('color', couleur);
+    elH3.innerHTML = contenu;
+}
+
+/**
+ * Fonction qui supprime le message
+ * @param {type} id
+ * @returns {undefined}
+ */
+
+function supprime(id) {
+    let el = window.document.querySelector('#' + id);
+    if(el){
+        el.remove();
+    }
+}
+
+/**
 * Fonction qui retourne l'alcool pur ingéré en fonction du nombre
 * de verre
 *

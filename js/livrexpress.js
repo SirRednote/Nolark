@@ -28,7 +28,7 @@ window.addEventListener('load', function () {
     // Gestion de l'input de type range (recopie de la valeur dans l'output)
     window.document.querySelector('#nb_accidents').addEventListener('change',
     function() {
-        window.document.querySelector('#o_nb_accidents'). value = recupValeur('#nb_accidents');
+        window.document.querySelector('#o_nb_accidents').value = recupValeur('#nb_accidents');
         calculerPrime();
     });
     
