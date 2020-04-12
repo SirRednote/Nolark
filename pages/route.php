@@ -33,12 +33,12 @@
                 <span></span>
                 <span></span>
                 <ul>
-                    <li><a href="../index.html">Accueil</a></li>
-                    <li><a href="route.html">Route</a></li>
-                    <li><a href="cross.html">Cross</a></li>
-                    <li><a href="piste.html">Piste</a></li>
-                    <li><a href="enfants.html">Enfants</a></li>
-                    <li><a href="nous-contacter.html">Nous contacter</a></li>
+                    <li><a href="../index.php">Accueil</a></li>
+                    <li><a href="route.php">Route</a></li>
+                    <li><a href="cross.php">Cross</a></li>
+                    <li><a href="piste.php">Piste</a></li>
+                    <li><a href="enfants.php">Enfants</a></li>
+                    <li><a href="nous-contacter.php">Nous contacter</a></li>
                 </ul>
             </nav>
         </header>
