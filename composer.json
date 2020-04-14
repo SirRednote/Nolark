@@ -1,0 +1,13 @@
+{
+    "name": "vendor/nolark",
+    "description": "Description of project Nolark.",
+    "authors": [
+        {
+            "name": "Rednote",
+            "email": "your@email.here"
+        }
+    ],
+    "require": {
+        "twig/twig": "v2.12.5"
+    }
+}
